@@ -13,8 +13,6 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItem from "@material-ui/core/ListItem";
 import Popper from "@material-ui/core/Popper";
 import Fade from "@material-ui/core/Fade";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
 import Badge from "@material-ui/core/Badge";
 import IconButton from "@material-ui/core/IconButton";
 import PlayCircleFilledWhiteIcon from "@material-ui/icons/PlayCircleFilledWhite";
@@ -79,8 +77,8 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 150,
     maxHeight: 500,
     width: 400,
-    zIndex: 1202 /* sidebar is 1200*/,
-    background: theme.palette.secondary.main,
+    zIndex: 1202 /* Material UI sidebar has a z-index of 1200*/,
+    background: theme.palette.background.default,
     overflowY: "scroll",
     whiteSpace: "nowrap",
     overflow: "hidden",
@@ -91,7 +89,6 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
     textOverflow: "ellipsis",
   },
-  playbackRateSelector: {},
 }));
 
 function VolumeValueLabel(props) {
@@ -230,11 +227,6 @@ const Player = ({ setAudioPlayerControls }) => {
     }));
   };
 
-  const setPlaybackRate = (event) => {
-    audioEl.current.playbackRate = event.target.value;
-    updatePlayerUI();
-  };
-
   const volumeSliderHandler = (event, newVolume) => {
     audioEl.current.volume = newVolume;
     updatePlayerUI();
@@ -355,37 +347,6 @@ const Player = ({ setAudioPlayerControls }) => {
             >
               <SkipNextIcon />
             </IconButton>
-          </Grid>
-          <Grid item>
-            <Select
-              value={state.playbackRate}
-              onChange={setPlaybackRate}
-              label="Playback Rate"
-              className={classes.playbackRateSelector}
-            >
-              <ListItem>Playback Rate</ListItem>
-              <MenuItem selected={state.playbackRate === 0.5} value={0.5}>
-                0.5
-              </MenuItem>
-              <MenuItem selected={state.playbackRate === 0.75} value={0.75}>
-                0.75
-              </MenuItem>
-              <MenuItem selected={state.playbackRate === 1} value={1}>
-                1
-              </MenuItem>
-              <MenuItem selected={state.playbackRate === 1.25} value={1.25}>
-                1.25
-              </MenuItem>
-              <MenuItem selected={state.playbackRate === 1.5} value={1.5}>
-                1.5
-              </MenuItem>
-              <MenuItem selected={state.playbackRate === 1.75} value={1.75}>
-                1.75
-              </MenuItem>
-              <MenuItem selected={state.playbackRate === 2} value={2}>
-                2
-              </MenuItem>
-            </Select>
           </Grid>
           <Grid item xs={2}>
             <Grid container alignItems="center">

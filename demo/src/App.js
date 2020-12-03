@@ -1,7 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useRef} from 'react';
+import logo from "./logo.svg";
+import "./App.css";
+import Player from "./Player";
 
 function App() {
+  const [audioPlayerControls, setAudioPlayerControls] = useState({
+    addAudio: () => {},
+    playNow: () => {},
+  }); 
+  const audioPlayer = useRef(
+    <Player setAudioPlayerControls={setAudioPlayerControls} />
+  );
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +27,7 @@ function App() {
           Learn React
         </a>
       </header>
+      {audioPlayer.current}
     </div>
   );
 }
